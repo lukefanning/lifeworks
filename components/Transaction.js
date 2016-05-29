@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import config from '../config';
 import { connect } from 'react-redux';
-import { doTransaction } from '../actions'
+import { doTransaction } from '../actions';
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Transaction extends React.Component {
     this.state = {
       value: ''
     }
+    this.keyHistory = [];
   }
   onClick(add) {
     if (!this.amountIsValid()) {
@@ -51,6 +52,17 @@ class Transaction extends React.Component {
     // Can remove amount from balance
     return true;
   }
+  onKeyDown(keyCode) {
+    // Easter egg!
+    let keyHistory = this.keyHistory;
+    if (keyHistory.length === 10) {
+      keyHistory.splice(0, 1);
+    }
+    keyHistory.push(keyCode);
+    if (JSON.stringify(keyHistory) === JSON.stringify([38, 38, 40, 40, 37, 39, 37, 39, 66, 65])) {
+      this.props.dispatch(doTransaction(1337));
+    }
+  }
   render() {
     const currency = config.currencies[this.props.currency];
     const min = 1 / Math.pow(10, currency.dp);
@@ -60,6 +72,7 @@ class Transaction extends React.Component {
         <span style={styles.symbol}>{currency.symbol}</span>
         <input style={styles.input}
                onChange={e => this.setState({value: e.target.value})}
+               onKeyDown={e => this.onKeyDown(e.keyCode)}
                type='number'
                min={min} step={min} value={this.state.value} />
         <button style={styles.button} onClick={() => this.onClick(true)} disabled={!this.amountIsValid()}>+</button>
@@ -78,7 +91,7 @@ Transaction.propTypes = {
 const styles = {
   container: {
     marginTop: 10,
-    paddingLeft: 5,
+    paddingRight: 10,
     textAlign: 'right'
   },
   symbol: {

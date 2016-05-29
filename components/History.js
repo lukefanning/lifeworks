@@ -6,9 +6,6 @@ import Immutable from 'immutable';
 import HistoryItem from './HistoryItem'
 
 class History extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.list.scrollTop = this.list.scrollHeight;
   }
@@ -21,7 +18,7 @@ class History extends React.Component {
     return (
       <div style={styles.container}>
         <div ref={node => this.list = node} style={styles.list}>
-          {transactions.map(trans => <HistoryItem key={trans.time} transaction={trans} currency={currency} />)}
+          {transactions.map(trans => <HistoryItem key={trans.get('time')} transaction={trans.toJS()} currency={currency} />)}
         </div>
       </div>
     );
@@ -30,7 +27,7 @@ class History extends React.Component {
 
 History.propTypes = {
   currency: PropTypes.string.isRequired,
-  transactions: PropTypes.instanceOf(Immutable.OrderedSet).isRequired
+  transactions: PropTypes.instanceOf(Immutable.List).isRequired
 }
 
 const styles = {

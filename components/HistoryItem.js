@@ -28,7 +28,8 @@ HistoryItem.propTypes = {
 const styles = {
   container: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    fontSize: '1.5rem'
   }
 }
 

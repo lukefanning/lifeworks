@@ -5,6 +5,7 @@ import Balance from './Balance';
 import Transaction from './Transaction';
 import History from './History';
 import Header from './Header';
+import Currency from './Currency';
 
 const App = () => (
   <div style={styles.container}>
@@ -14,6 +15,9 @@ const App = () => (
         <Balance />
       </div>
       <div style={styles.rightColumn}>
+        <div style={styles.currency}>
+          <Currency />
+        </div>
         <div style={styles.history}>
           <History />
         </div>
@@ -48,8 +52,11 @@ const styles = {
     width: '50%',
     height: '100%'
   },
+  currency: {
+    height: 50
+  },
   history: {
-    height: 'calc(100% - 55px)'
+    height: 'calc(100% - 100px)'
   },
   transaction: {
     height: 50
