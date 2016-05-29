@@ -12,6 +12,12 @@ export default {
       symbol: '$',
       option: 'USD ($)',
       dp: 2
+    },
+    jpy: {
+      rate: 161.24,
+      symbol: '¥',
+      option: 'JPY (¥)',
+      dp: 0
     }
   }
 }

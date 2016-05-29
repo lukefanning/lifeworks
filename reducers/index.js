@@ -2,9 +2,11 @@
 
 import { Map, List } from 'immutable';
 import { DO_TRANSACTION, RESET, CHANGE_CURRENCY } from '../actions';
+import config from '../config';
 
 function doTransaction(state, amount) {
-  return state.set('balance', state.get('balance') + amount).set('transactions', state.get('transactions').push(Map({time: Date.now(), amount: amount})));
+  let map = state.set('balance', state.get('balance') + amount);
+  return map.set('transactions', map.get('transactions').push(Map({time: Date.now(), amount: amount})));
 }
 
 function reset(state) {
@@ -12,7 +14,12 @@ function reset(state) {
 }
 
 function changeCurrency(state, currency) {
-  return state.set('currency', currency);
+  const oldRate = config.currencies[state.get('currency')].rate;
+  const newRate = config.currencies[currency].rate;
+
+  let map = state.set('balance', state.get('balance') / oldRate * newRate);
+  map = map.set('transactions', state.get('transactions').map(trans => Map({time: trans.get('time'), amount: trans.get('amount') / oldRate * newRate})));
+  return map.set('currency', currency);
 }
 
 export default (state, action) => {
