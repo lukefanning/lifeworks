@@ -6,7 +6,7 @@ Wallet application that lets you add and remove funds in a variety of currencies
 
 ```
 npm install webpack-dev-server -g
-`Clone this repo
+Clone this repo
 npm install
 ```
 
