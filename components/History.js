@@ -44,7 +44,7 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     currency: state.get('currency'),
     transactions: state.get('transactions')

@@ -7,6 +7,7 @@ import moment from 'moment';
 const HistoryItem = ({ currency, transaction }) => {
   currency = config.currencies[currency];
   let { amount, time } = transaction;
+  const amountStr = `${amount < 0 ? '-' : '+'}${currency.symbol}${Math.abs(amount).toFixed(currency.dp)}`;
 
   return (
     <div style={styles.container}>
@@ -14,11 +15,11 @@ const HistoryItem = ({ currency, transaction }) => {
         {moment(time).format(config.historyMomentFormat)}
       </div>
       <div>
-        <span style={{color: amount < 0 ? 'red' : 'green'}}>{`${amount < 0 ? '-' : '+'}${currency.symbol}${Math.abs(amount).toFixed(currency.dp)}`}</span>
+        <span style={{color: amount < 0 ? 'red' : 'green'}}>{amountStr}</span>
       </div>
     </div>
-  )
-};
+  );
+}
 
 HistoryItem.propTypes = {
   currency: PropTypes.string.isRequired,

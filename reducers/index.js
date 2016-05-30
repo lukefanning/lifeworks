@@ -14,11 +14,15 @@ function reset(state) {
 }
 
 function changeCurrency(state, currency) {
-  const oldRate = config.currencies[state.get('currency')].rate;
+  // Get the rate of the current and new currency
+  const currRate = config.currencies[state.get('currency')].rate;
   const newRate = config.currencies[currency].rate;
 
-  let map = state.set('balance', state.get('balance') / oldRate * newRate);
-  map = map.set('transactions', state.get('transactions').map(trans => Map({time: trans.get('time'), amount: trans.get('amount') / oldRate * newRate})));
+  // Convert the current balance and all transactions to new currency
+  let map = state.set('balance', state.get('balance') / currRate * newRate);
+  map = map.set('transactions', state.get('transactions').map(trans => Map({time: trans.get('time'), amount: trans.get('amount') / currRate * newRate})));
+
+  // Change the currency
   return map.set('currency', currency);
 }
 

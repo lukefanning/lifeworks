@@ -110,7 +110,7 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     currency: state.get('currency'),
     balance: state.get('balance')

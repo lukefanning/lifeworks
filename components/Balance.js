@@ -9,10 +9,10 @@ const Balance = ({ currency, balance }) => {
 
   return (
     <div style={styles.container}>
-      {`${currency.symbol}${balance.toFixed(currency.dp)}`}
+      {currency.symbol}{balance.toFixed(currency.dp)}
     </div>
   );
-};
+}
 
 Balance.propTypes = {
   currency: PropTypes.string.isRequired,
@@ -33,7 +33,7 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     currency: state.get('currency'),
     balance: state.get('balance')

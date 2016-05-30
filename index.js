@@ -27,7 +27,7 @@ const createPersistentStore = compose(
 
 render(
   <Provider store={createPersistentStore(reducer)}>
-	  <App />
+    <App />
   </Provider>,
 	document.getElementById('main')
 );

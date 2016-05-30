@@ -20,14 +20,14 @@ const Currency = ({ currency, dispatch }) => {
 const styles = {
   container: {
     textAlign: 'right',
-    paddingRight: 10
+    paddingRight: '1rem'
   },
   select: {
     fontSize: '1.5rem'
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { currency: state.get('currency') }
 }
 
