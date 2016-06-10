@@ -1,6 +1,6 @@
-# LifeWorks Wallet
+# Wallet
 
-Wallet application that lets you add and remove funds in a variety of currencies.
+Wallet application that lets you add and remove funds in a variety of currencies. Used to showcase simple use of React.JS, Redux and Immutable.
 
 ## Installation
 
